@@ -23,7 +23,7 @@ function App() {
           </li>
         </ul>
         <Switch>
-          <Route exact path="/jobs" component={Jobs} />
+          <PrivateRoute exact path="/jobs" component={Jobs} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route component={Login} />
