@@ -6,8 +6,8 @@ export const axiosWithAuth = () => {
     return axios.create({
       baseURL: " https://divercity-test.herokuapp.com/",
       headers: {
-        "content-type": "application/x-www-form-urlencoded",
-        "Authorization":  "a token"
+        "content-type": "application/json",
+        "Authorization":  `${token}`
       }
     });
   };
