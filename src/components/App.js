@@ -3,11 +3,12 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 import Login from './login';
-import Register from './register'
-import Jobs from './jobs'
+import Register from './register';
+import Jobs from './jobs';
+import Apply from './apply';
 import PrivateRoute from './privateRoute';
 
-function App() {
+function App(props) {
   return (
     <Router>
       <div className="App">
@@ -19,14 +20,14 @@ function App() {
             <Link to="/login">Login</Link>
           </li>
           <li>
-            <Link to="/jobs">Protected Jobs Page</Link>
+            <Link to="/jobs">Jobs Page</Link>
           </li>
         </ul>
         <Switch>
-          <PrivateRoute exact path="/jobs" component={Jobs} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route component={Login} />
+          <PrivateRoute exact path="/jobs/:id/apply" render={props => <Apply {...props} />} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path='/jobs' render={props => <Jobs {...props} />} />
         </Switch>
       </div>
     </Router>
