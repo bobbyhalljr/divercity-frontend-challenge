@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Apply = () => {
+const Apply = (props) => {
     const [apps, setApps] = useState()
+    console.log(props)
     return (
         <div>
             <h1>this is the apply component</h1>

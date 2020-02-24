@@ -8,7 +8,39 @@ import Jobs from './jobs';
 import Apply from './apply';
 import PrivateRoute from './privateRoute';
 
-function App(props) {
+const [jobs, setJobs] = useState([])
+    const [body, setBody] = useState({
+        motiv: '',
+        coverLetter: ''
+    })
+
+    const getJobs = () => {
+        axiosWithAuth()
+        .get('/jobs')
+        .then(res => {
+            console.log(res.data)
+            setJobs(res.data.jobs)
+        })
+        .catch(err => console.log(err.response))
+    }
+
+    const applyForJob = () => {
+        axiosWithAuth()
+        .post(`/jobs/${match.params.id}/apply`)
+        .then(res => {
+            console.log(res.data)
+            setBody(res.data)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+
+    useEffect(() => {
+        getJobs();
+    }, [])
+
+const App = ({ match }) => {
   return (
     <Router>
       <div className="App">
@@ -24,10 +56,10 @@ function App(props) {
           </li>
         </ul>
         <Switch>
-          <PrivateRoute exact path="/jobs/:id/apply" render={props => <Apply {...props} />} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path='/jobs' render={props => <Jobs {...props} />} />
+          <Route path='/jobs' component={Jobs}/>
+          <PrivateRoute exact path={`/jobs/:id/apply`} component={jobs} />
         </Switch>
       </div>
     </Router>
