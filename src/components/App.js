@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Link, useParams } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 import Login from './login';
@@ -25,9 +25,9 @@ const App = (props) => {
         .catch(err => console.log(err.response))
     }
 
-    const applyForJob = () => {
+    const applyForJob = ({ id }) => {
         axiosWithAuth()
-        .post(`/jobs/2/apply`)
+        .post(`/jobs/${id}/apply`)
         .then(res => {
             console.log(res.data)
             setBody(res.data)
@@ -59,7 +59,7 @@ const App = (props) => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route path='/jobs' render={props => <Jobs jobs={jobs} {...props} /> }/>
-          <PrivateRoute exact path={`/jobs/:id/apply`} component={jobs} />
+          <PrivateRoute exact path={`/jobs/:id/apply`} applyForJob={applyForJob} component={Apply} />
         </Switch>
       </div>
     </Router>

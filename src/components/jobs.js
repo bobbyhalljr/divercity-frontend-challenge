@@ -1,25 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
-import { useParams, Link, Route, Redirect } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import Apply from './apply';
 import Login from './login'
+import CustomModal from '../components/modal';
 // import data from '../mockAPI/data';
-
-const verifyUser = (token) => {
-    token = localStorage.getItem('token')
-    if(!token){
-        console.log('no token')
-        return (
-            // <Redirect to='/login' />
-            <Login />
-        )
-    } else {
-        console.log('token verified')
-        return (
-            <Apply />
-        )
-    }
-}
 
 const Jobs = ({ match, jobs }) => {
     return (
@@ -41,9 +25,10 @@ const Jobs = ({ match, jobs }) => {
                                 </div>
                             ))}
                         </h3>
-                        <Link to={`/jobs/${job.id}/apply`}>
+                        <CustomModal />
+                        {/* <Link to={`/jobs/${job.id}/apply`}>
                             <button onClick={() => verifyUser()} style={{ background: "dodgerblue", color: "white", fontSize: "18px", fontWeight: "600", paddingLeft: "30px", paddingTop: "10px", paddingRight: "30px", paddingBottom: "10px" ,borderRadius: "40px" }}>APPLY HERE</button>
-                        </Link>
+                        </Link> */}
                         {/* <Link to={`jobs/${props.match.params.id}/apply`} style={{ background: "dodgerblue", color: "white", fontSize: "18px", fontWeight: "600", paddingLeft: "30px", paddingTop: "10px", paddingRight: "30px", paddingBottom: "10px" ,borderRadius: "40px" }}>APPLY HERE</Link> */}
                         {/* <div onClick={console.log(jobs)}> */}
                             {/* <Route path={`/jobs/:id/apply`}

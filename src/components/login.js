@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const Login = (props) => {
+const Login = ({ closeModal, history }) => {
     const [credentials, setCredentials] = useState({
         username: "",
         password: ""
@@ -21,9 +21,10 @@ const Login = (props) => {
       .then(res => {
         localStorage.setItem('token', res.data.token);
         // redirect to the apps main page
-        props.history.push("/jobs");
+        history.push("/jobs");
       })
       .catch(err => console.log(err));
+      closeModal()
   };
 
     return (
