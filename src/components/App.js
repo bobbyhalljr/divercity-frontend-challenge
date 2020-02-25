@@ -59,7 +59,7 @@ const App = (props) => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route path='/jobs' render={props => <Jobs jobs={jobs} {...props} /> }/>
-          <PrivateRoute exact path={`/jobs/:id/apply`} applyForJob={applyForJob} component={Apply} />
+          <Route exact path={`/jobs/:id/apply`} applyForJob={applyForJob} component={Apply} />
         </Switch>
       </div>
     </Router>

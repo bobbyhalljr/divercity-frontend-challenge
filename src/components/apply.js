@@ -2,37 +2,42 @@ import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Link } from 'react-router-dom';
 
-const Apply = ({ closeModal }) => {
-    const [body, setBody] = useState({
-        motiv: '',
-        coverLetter: ''
-    })
+const Apply = ({ closeModal, history }) => {
+    const [motivation, setMotivation] = useState('')
+    const [coverLetter, setCoverLetter] = useState('')
 
-  const handleChange = e => {
-    setBody({
-        ...body,
-        [e.target.name]: e.target.value
-    });
-  };
+  const handleMotivation = (e) => {
+    setMotivation(e.target.value);
 
-  const applyForJob = (e, body) => {
-    e.preventDefault();
-    // axiosWithAuth()
-    //   .post("/jobs/:id/apply", body)
-    //   .then(res => {
-    //     localStorage.setItem('token', res.data.token);
-    //     // redirect to the apps main page
-    //     // props.history.push("/jobs");
-    //     console.log(res.data)
-    //   })
-    //   .catch(err => console.log(err));
-    if(body){
-        alert('You applied!!')
-        closeModal()
-    } else {
-        alert('Please add a motivation and cover letter')
-    }
-  };
+  const handleCoverLetter = (e) => {
+    setCoverLetter(e.target.value)
+  }
+
+
+    const applyForJob = (e) => {
+      e.preventDefault();
+      axiosWithAuth()
+        .post("/jobs/2/apply", motivation, coverLetter)
+        .then(res => {
+          localStorage.setItem('token', res.data.token);
+          // setMotivation(res.data.motivation)
+          // setCoverLetter(res.data.coverLetter)
+          // redirect to the apps main page
+          history.push("/jobs");
+          // console.log(res.data.motivation)
+          // console.log(res.data.coverLetter)
+        })
+        .catch(err => console.log(err));
+
+      if(motivation && coverLetter){
+          alert('You applied!!')
+          closeModal()
+      } else {
+          // alert('You applied!!')
+          // closeModal()
+          alert('Please add a motivation and cover letter')
+      }
+    };
 
     return (
       <div>
@@ -48,8 +53,8 @@ const Apply = ({ closeModal }) => {
                 <input
                     type="text"
                     name="motivation"
-                    value={body.motiv}
-                    onChange={handleChange}
+                    value={motivation}
+                    onChange={handleMotivation}
                 />
             </div>
             <div>
@@ -58,10 +63,10 @@ const Apply = ({ closeModal }) => {
                 </label>
                     <br />
                 <input
-                    type="password"
-                    name="cover-letter"
-                    value={body.coverLetter}
-                    onChange={handleChange}
+                    type="text"
+                    name="coverLetter"
+                    value={coverLetter}
+                    onChange={handleCoverLetter}
                 />
             </div>
             <button>
