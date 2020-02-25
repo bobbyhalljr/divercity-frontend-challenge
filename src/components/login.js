@@ -6,7 +6,6 @@ const Login = (props) => {
         username: "",
         password: ""
     })
-    console.log(credentials)
 
   const handleChange = e => {
     setCredentials({

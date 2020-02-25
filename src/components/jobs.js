@@ -2,44 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { useParams, Link, Route, Redirect } from 'react-router-dom';
 import Apply from './apply';
+import Login from './login'
 // import data from '../mockAPI/data';
 
-const Jobs = ({ match }) => {
-    // const [jobs, setJobs] = useState([])
-    // const [body, setBody] = useState({
-    //     motiv: '',
-    //     coverLetter: ''
-    // })
+const verifyUser = (token) => {
+    token = localStorage.getItem('token')
+    if(!token){
+        console.log('no token')
+        return (
+            // <Redirect to='/login' />
+            <Login />
+        )
+    } else {
+        console.log('token verified')
+        return (
+            <Apply />
+        )
+    }
+}
 
-    // const getJobs = () => {
-    //     axiosWithAuth()
-    //     .get('/jobs')
-    //     .then(res => {
-    //         console.log(res.data)
-    //         setJobs(res.data.jobs)
-    //     })
-    //     .catch(err => console.log(err.response))
-    // }
-
-    // const applyForJob = () => {
-    //     axiosWithAuth()
-    //     .post(`/jobs/${match.params.id}/apply`)
-    //     .then(res => {
-    //         console.log(res.data)
-    //         setBody(res.data)
-    //     })
-    //     .catch(error => {
-    //         console.log(error)
-    //     })
-    // }
-
-    // useEffect(() => {
-    //     getJobs();
-    // }, [])
-
-    // let { id } = useParams();
-    // console.log(props)
-
+const Jobs = ({ match, jobs }) => {
     return (
         <div>
             {jobs.map(job => {
@@ -59,7 +41,9 @@ const Jobs = ({ match }) => {
                                 </div>
                             ))}
                         </h3>
-                        <Link onClick={Apply} to={`/jobs/${match.params.id}`} style={{ background: "dodgerblue", color: "white", fontSize: "18px", fontWeight: "600", paddingLeft: "30px", paddingTop: "10px", paddingRight: "30px", paddingBottom: "10px" ,borderRadius: "40px" }}>APPLY HERE</Link>
+                        <Link to={`/jobs/${job.id}/apply`}>
+                            <button onClick={() => verifyUser()} style={{ background: "dodgerblue", color: "white", fontSize: "18px", fontWeight: "600", paddingLeft: "30px", paddingTop: "10px", paddingRight: "30px", paddingBottom: "10px" ,borderRadius: "40px" }}>APPLY HERE</button>
+                        </Link>
                         {/* <Link to={`jobs/${props.match.params.id}/apply`} style={{ background: "dodgerblue", color: "white", fontSize: "18px", fontWeight: "600", paddingLeft: "30px", paddingTop: "10px", paddingRight: "30px", paddingBottom: "10px" ,borderRadius: "40px" }}>APPLY HERE</Link> */}
                         {/* <div onClick={console.log(jobs)}> */}
                             {/* <Route path={`/jobs/:id/apply`}
@@ -73,7 +57,6 @@ const Jobs = ({ match }) => {
                     </div>
                 )
             })}
-            {/* <Link to={`jobs/${props.match.params.id}/apply`} style={{ background: "dodgerblue", color: "white", fontSize: "18px", fontWeight: "600", paddingLeft: "30px", paddingTop: "10px", paddingRight: "30px", paddingBottom: "10px" ,borderRadius: "40px" }}>APPLY HERE</Link> */}
 
         </div>
     )

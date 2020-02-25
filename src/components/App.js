@@ -1,6 +1,6 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 import Login from './login';
 import Register from './register';
@@ -8,7 +8,8 @@ import Jobs from './jobs';
 import Apply from './apply';
 import PrivateRoute from './privateRoute';
 
-const [jobs, setJobs] = useState([])
+const App = (props) => {
+  const [jobs, setJobs] = useState([])
     const [body, setBody] = useState({
         motiv: '',
         coverLetter: ''
@@ -26,7 +27,7 @@ const [jobs, setJobs] = useState([])
 
     const applyForJob = () => {
         axiosWithAuth()
-        .post(`/jobs/${match.params.id}/apply`)
+        .post(`/jobs/2/apply`)
         .then(res => {
             console.log(res.data)
             setBody(res.data)
@@ -40,7 +41,6 @@ const [jobs, setJobs] = useState([])
         getJobs();
     }, [])
 
-const App = ({ match }) => {
   return (
     <Router>
       <div className="App">
@@ -58,7 +58,7 @@ const App = ({ match }) => {
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route path='/jobs' component={Jobs}/>
+          <Route path='/jobs' render={props => <Jobs jobs={jobs} {...props} /> }/>
           <PrivateRoute exact path={`/jobs/:id/apply`} component={jobs} />
         </Switch>
       </div>
