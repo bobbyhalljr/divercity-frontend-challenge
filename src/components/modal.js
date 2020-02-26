@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { Redirect } from 'react-router-dom';
 
 import Login from '../components/login';
 import Apply from '../components/apply';
@@ -14,7 +13,11 @@ const customStyles = {
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
-      transform: 'translate(-50%, -50%)'
+      transform: 'translate(-50%, -50%)',
+      width: '50%',
+    },
+    overlay: {
+        backgroundColor: 'rgba(0,0,0,0.5)'
     }
   };
 
@@ -53,7 +56,9 @@ const CustomModal = ({ match }) => {
                 style={customStyles}
                 contentLabel='apply for job modal'
                 >
-                    <button onClick={closeModal}>close</button>
+                    <div className='flex justify-end'>
+                        <button className='font-bold bg-gray-200 px-4 py-2 rounded-lg' onClick={closeModal}>X</button>
+                    </div>
                     <Apply closeModal={closeModal} match={match} />
                 </Modal> 
                 : 
@@ -63,8 +68,10 @@ const CustomModal = ({ match }) => {
                 style={customStyles}
                 contentLabel='apply for job modal'
                 >
-                    <button onClick={closeModal}>close</button>
-                    <div>Login modal</div>
+                    <div className='flex justify-end mb-4'>
+                        <button className='font-bold bg-gray-200 px-4 py-2 rounded-lg' onClick={closeModal}>X</button>
+                    </div>
+                    <h3 className='text-xl'>You have to be logged in to apply to jobs</h3>
                     <Login closeModal={closeModal}/>
                 </Modal> 
             }

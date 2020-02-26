@@ -1,7 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Apply from './apply';
-import Login from './login'
 import CustomModal from '../components/modal';
 // import data from '../mockAPI/data';
 
@@ -26,19 +23,6 @@ const Jobs = ({ match, jobs }) => {
                             ))}
                         </h3>
                         <CustomModal match={match} />
-                        {/* <Link to={`/jobs/${job.id}/apply`}>
-                            <button onClick={() => verifyUser()} style={{ background: "dodgerblue", color: "white", fontSize: "18px", fontWeight: "600", paddingLeft: "30px", paddingTop: "10px", paddingRight: "30px", paddingBottom: "10px" ,borderRadius: "40px" }}>APPLY HERE</button>
-                        </Link> */}
-                        {/* <Link to={`jobs/${props.match.params.id}/apply`} style={{ background: "dodgerblue", color: "white", fontSize: "18px", fontWeight: "600", paddingLeft: "30px", paddingTop: "10px", paddingRight: "30px", paddingBottom: "10px" ,borderRadius: "40px" }}>APPLY HERE</Link> */}
-                        {/* <div onClick={console.log(jobs)}> */}
-                            {/* <Route path={`/jobs/:id/apply`}
-                                render={() => {
-                                    return <Apply />
-                                }}
-                            >
-
-                            </Route> */}
-                        {/* </div> */}
                     </div>
                 )
             })}
