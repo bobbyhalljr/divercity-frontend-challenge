@@ -48,7 +48,7 @@ const CustomModal = ({ match }) => {
 
     return (
         <div>
-            <button className='px-4 py-2 bg-blue-400 text-lg text-white rounded-lg' onClick={openModal}>APPLY HERE</button>
+            <button className='shadow-md px-4 py-2 bg-blue-400 text-lg text-white rounded-lg' onClick={openModal}>APPLY HERE</button>
             {token ? 
                 <Modal
                 isOpen={modalIsOpen}
@@ -69,7 +69,7 @@ const CustomModal = ({ match }) => {
                 contentLabel='apply for job modal'
                 >
                     <div className='flex justify-end mb-4'>
-                        <button className='font-bold bg-gray-200 px-4 py-2 rounded-lg' onClick={closeModal}>X</button>
+                        <button className='font-bold shadow-md bg-gray-200 px-4 py-2 rounded-lg' onClick={closeModal}>X</button>
                     </div>
                     <h3 className='text-xl'>You have to be logged in to apply to jobs</h3>
                     <Login closeModal={closeModal}/>

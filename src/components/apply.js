@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Route } from 'react-router-dom';
+import { useAlert } from 'react-alert';
 
 const Apply = ({ closeModal, match }) => {
   const [applyBody, setApplyBody] = useState({
     motivation: '',
     cover_letter: ''
   })
+
+  const alert = useAlert()
 
   const handleChange = (e) => {
     setApplyBody({
@@ -22,12 +25,14 @@ const Apply = ({ closeModal, match }) => {
         .then(res => {
           console.log(res.data)
           closeModal()
-          alert(res.data.message)
+          // alert(res.data.message)
+        alert.success(`You have successfully applied to that job!`)
         })
         .catch(err => {
           console.log(err)
           if(err){
-            alert('Please provide a motivation and cover letter')
+            // alert('Please provide a motivation and cover letter')
+            alert.error('Please provide a motivation and cover letter')
           } else {
             return
           }
@@ -62,11 +67,11 @@ const Apply = ({ closeModal, match }) => {
                 onChange={handleChange}
               />
             </div>
-            <button className='bg-blue-400 text-white px-4 py-2 mt-4 rounded-lg'>
+            <button className='shadow-md bg-blue-400 text-white px-4 py-2 mt-4 rounded-lg'>
                 APPLY
             </button>
         </form>
-        <Route path='jobs/:id/apply'/>
+        {/* <Route path='jobs/:id/apply'/> */}
       </div>
     );
 }

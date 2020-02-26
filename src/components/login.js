@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { Link } from 'react-router-dom';
 
 const Login = ({ closeModal, history }) => {
     const [credentials, setCredentials] = useState({
@@ -20,9 +21,8 @@ const Login = ({ closeModal, history }) => {
       .post("/login", credentials)
       .then(res => {
         localStorage.setItem('token', res.data.token);
-        // redirect to the apps main page
-        history.push("/jobs")
         closeModal()
+        history.push('/jobs')
       })
       .catch(err => console.log(err));
   };
@@ -32,7 +32,7 @@ const Login = ({ closeModal, history }) => {
       <div className='flex justify-center items-center'>
         <h1 className='text-3xl font-semibold pt-10 pb-12'>Login</h1>
       </div>
-      <div class="w-full m-auto pt-36">
+      <div class="w-full max-w-xs m-auto pt-36">
         <form onSubmit={login} className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
@@ -61,7 +61,7 @@ const Login = ({ closeModal, history }) => {
              />
           </div>
           <div class="flex items-center justify-between">
-            <button onClick={login} class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+            <button onClick={login} class="shadow-md bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
               Sign In
             </button>
             <a href='#' class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" >

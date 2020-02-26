@@ -74,7 +74,7 @@ const Register = ({ history, closeModal }) => {
              />
           </div>
           <div class="flex items-center justify-between">
-            <button onClick={register} class="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+            <button onClick={register} class="shadow-md bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
               Register
             </button>
           </div>
