@@ -48,7 +48,7 @@ const CustomModal = ({ match }) => {
 
     return (
         <div>
-            <button onClick={openModal} style={buttonStyles}>APPLY HERE</button>
+            <button className='px-4 py-2 bg-blue-400 text-lg text-white rounded-lg' onClick={openModal}>APPLY HERE</button>
             {token ? 
                 <Modal
                 isOpen={modalIsOpen}
