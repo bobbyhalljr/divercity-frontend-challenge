@@ -27,7 +27,7 @@ const App = (props) => {
 
   return (
     <Router>
-      <div className="App">
+      <div className="App bg-gray-200">
         <Header />
         <Switch>
           <Route exact path="/login" component={Login} />

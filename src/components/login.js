@@ -28,7 +28,7 @@ const Login = ({ closeModal, history }) => {
   };
 
     return (
-      <>
+      <div className='bg-white mt-24'>
       <div className='flex justify-center items-center'>
         <h1 className='text-3xl font-semibold pt-10 pb-12'>Login</h1>
       </div>
@@ -88,7 +88,7 @@ const Login = ({ closeModal, history }) => {
           <button>Log in</button>
         </form>
       </div> */}
-      </>
+      </div>
     );
 }
 

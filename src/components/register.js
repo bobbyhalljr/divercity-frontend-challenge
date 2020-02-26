@@ -28,11 +28,11 @@ const Register = ({ history, closeModal }) => {
   };
 
     return (
-      <>
-      <div className='flex justify-center items-center'>
+      <div className='bg-white'>
+      <div className='flex justify-center items-center pt-24'>
         <h1 className='text-3xl font-semibold pt-10 pb-12'>Register</h1>
       </div>
-      <div class="w-full max-w-xs m-auto pt-36">
+      <div class="w-full max-w-xs m-auto pt-36 pb-64">
         <form className="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
@@ -104,7 +104,7 @@ const Register = ({ history, closeModal }) => {
       //     <button>register</button>
       //   </form>
       // </div> */}
-      </>
+      </div>
     );
 }
 

@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <div className='shadow-md w-full'>
-            <div>
+        <div className='shadow-md w-full bg-white fixed top-0'>
+            <div className=''>
                 <ul className='flex flex-row justify-end items-center p-4'>
                     <li className='mr-auto'>
                         <h1 className='font-bold text-blue-400 text-2xl'>Cool Job Site</h1>
