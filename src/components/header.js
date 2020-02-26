@@ -5,7 +5,7 @@ const Header = () => {
     return (
         <div className='shadow-md w-full bg-white fixed top-0 z-50'>
             <div className=''>
-                <ul className='flex flex-row justify-end items-center p-4'>
+                <ul className='flex flex-row flex-no-wrap justify-end items-center p-4'>
                     <li className='mr-auto'>
                         <h1 className='font-bold text-blue-400 text-2xl'>Cool Jobs</h1>
                     </li>
