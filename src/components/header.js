@@ -7,7 +7,7 @@ const Header = () => {
             <div className=''>
                 <ul className='flex flex-row justify-end items-center p-4'>
                     <li className='mr-auto'>
-                        <h1 className='font-bold text-blue-400 text-2xl'>Cool Job Site</h1>
+                        <h1 className='font-bold text-blue-400 text-2xl'>Cool Job</h1>
                     </li>
                     <li>
                         <NavLink activeClassName='text-blue-400 text-lg font-semibold p-4' className='font-semibold p-4 text-lg' to="/register">Register</NavLink>
