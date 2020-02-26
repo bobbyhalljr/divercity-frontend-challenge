@@ -25,7 +25,7 @@ const Jobs = ({ match, jobs }) => {
                                 </div>
                             ))}
                         </h3>
-                        <CustomModal />
+                        <CustomModal match={match} />
                         {/* <Link to={`/jobs/${job.id}/apply`}>
                             <button onClick={() => verifyUser()} style={{ background: "dodgerblue", color: "white", fontSize: "18px", fontWeight: "600", paddingLeft: "30px", paddingTop: "10px", paddingRight: "30px", paddingBottom: "10px" ,borderRadius: "40px" }}>APPLY HERE</button>
                         </Link> */}

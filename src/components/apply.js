@@ -1,45 +1,43 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { Link } from 'react-router-dom';
+import { Link, Route, useParams, Redirect } from 'react-router-dom';
 
-const Apply = ({ closeModal, history }) => {
-    const [motivation, setMotivation] = useState('')
-    const [coverLetter, setCoverLetter] = useState('')
+const Apply = ({ closeModal, match }) => {
+  const [applyBody, setApplyBody] = useState({
+    motivation: '',
+    cover_letter: ''
+  })
 
-  const handleMotivation = (e) => {
-    setMotivation(e.target.value);
-
-  const handleCoverLetter = (e) => {
-    setCoverLetter(e.target.value)
+  const handleChange = (e) => {
+    setApplyBody({
+      ...applyBody,
+      [e.target.name]: e.target.value
+    })
   }
-
 
     const applyForJob = (e) => {
       e.preventDefault();
       axiosWithAuth()
-        .post("/jobs/2/apply", motivation, coverLetter)
+        .post(`/jobs/${match.params.id}/apply`, applyBody)
         .then(res => {
-          localStorage.setItem('token', res.data.token);
-          // setMotivation(res.data.motivation)
-          // setCoverLetter(res.data.coverLetter)
-          // redirect to the apps main page
-          history.push("/jobs");
-          // console.log(res.data.motivation)
-          // console.log(res.data.coverLetter)
-        })
-        .catch(err => console.log(err));
-
-      if(motivation && coverLetter){
-          alert('You applied!!')
+          console.log(res.data)
           closeModal()
-      } else {
-          // alert('You applied!!')
-          // closeModal()
-          alert('Please add a motivation and cover letter')
-      }
+          alert(res.data.message)
+        })
+        .catch(err => {
+          console.log(err)
+          if(err){
+            alert('Please provide a motivation and cover letter')
+          } else {
+            return
+          }
+        });
+
+      
     };
 
     return (
+      <>
       <div>
         <div>
             <h1>Fill out the form to apply to the job</h1>
@@ -53,8 +51,8 @@ const Apply = ({ closeModal, history }) => {
                 <input
                     type="text"
                     name="motivation"
-                    value={motivation}
-                    onChange={handleMotivation}
+                    value={applyBody.motivation}
+                    onChange={handleChange}
                 />
             </div>
             <div>
@@ -64,9 +62,9 @@ const Apply = ({ closeModal, history }) => {
                     <br />
                 <input
                     type="text"
-                    name="coverLetter"
-                    value={coverLetter}
-                    onChange={handleCoverLetter}
+                    name="cover_letter"
+                    value={applyBody.cover_letter}
+                    onChange={handleChange}
                 />
             </div>
             <button>
@@ -74,6 +72,9 @@ const Apply = ({ closeModal, history }) => {
             </button>
         </form>
       </div>
+
+      <Route path='jobs/:id/apply'/>
+      </>
     );
 }
 

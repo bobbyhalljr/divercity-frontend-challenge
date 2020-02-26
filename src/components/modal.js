@@ -30,7 +30,7 @@ const buttonStyles = {
     borderRadius: "40px" 
 }
 
-const CustomModal = () => {
+const CustomModal = ({ match }) => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
     const openModal = () => {
@@ -54,7 +54,7 @@ const CustomModal = () => {
                 contentLabel='apply for job modal'
                 >
                     <button onClick={closeModal}>close</button>
-                    <Apply closeModal={closeModal} />
+                    <Apply closeModal={closeModal} match={match} />
                 </Modal> 
                 : 
                 <Modal
