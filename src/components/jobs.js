@@ -28,7 +28,7 @@ const Jobs = ({ match, jobs }) => {
     }
 
     return (
-        <div className='pt-32 pb-4'>
+        <div className='pt-48 pb-4'>
             <div className='flex justify-center pt-4'>
                 <div class="inline-block relative w-64">
                     <select class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
@@ -49,7 +49,7 @@ const Jobs = ({ match, jobs }) => {
                         <h1 className='text-2xl pb-4'>{job.title}</h1>
                         <h2 className={`${show}`}>{job.description}</h2>
                         <div className='flex justify-end'>
-                        <button className='text-blue-400 font-semibold text-xl m-2' onClick={toggleClass}>
+                        <button className='text-blue-400 font-semibold text-xl m-2 py-4' onClick={toggleClass}>
                             view full
                         </button>
                         </div>
