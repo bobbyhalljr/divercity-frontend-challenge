@@ -49,8 +49,8 @@ const Jobs = ({ match, jobs }) => {
                         <h1 className='text-2xl pb-4'>{job.title}</h1>
                         <h2 className={`${show}`}>{job.description}</h2>
                         <div className='flex justify-end'>
-                        <button className='text-blue-400 font-semibold text-lg m-2' onClick={toggleClass}>
-                            VIEW FULL
+                        <button className='text-blue-400 font-semibold text-xl m-2' onClick={toggleClass}>
+                            view full
                         </button>
                         </div>
                         <h3>Location: {job.location}</h3>
